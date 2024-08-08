@@ -47,9 +47,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{fancyhdr}
 % 设置标题格式
 \RequirePackage{titlesec}
-\newcommand{\sectionbreak}{\clearpage}
+\newcommand{\sectionbreak}{\clearpage\vspace*{0.3\baselineskip}}
 % 超链接 hyperref 的设置
-\RequirePackage{hyperref}
+\RequirePackage[hypertexnames=false]{hyperref}
 % 插入图片
 \RequirePackage{graphicx}
 % 表格
@@ -83,6 +83,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % lastpage
 \RequirePackage{lastpage}
 
+\hypersetup{hidelinks}
+
 % 参考文献格式 GB/T7714-2015
 % 来自https://github.com/hushidong/biblatex-gb7714-2015
 \RequirePackage[backend=biber,gbpub=false, style=gb7714-2015]{biblatex}
@@ -100,6 +102,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setlength{\baselineskip}{20pt}         % 基准行间距
 
 %\setlength{\bibsep}{0.5ex} % 参考文献条目间距
+
+%\setlength{\bibitemsep}{1.5ex} % 参考文献条目间距
+% \AtBeginBibliography{\setlength{\itemsep}{1.5ex}}
 
 % 设置字体 %
 % -------------------------------------------------------%
@@ -128,7 +133,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\kaiti}{\CJKfamily{kai}}
 
 % 设置参考文献的字体格式
-\renewcommand{\bibfont}{\zihao{5} \kgb}
+\renewcommand{\bibfont}{\zihao{5} \kgb \setstretch{1.5}}
 
 % 每行缩进两个汉字
 \setlength{\parindent}{2em}
@@ -296,10 +301,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               [after-code]%定义标题后的内容
 
 \newcommand{\chaptername}{第{\thesection}章}
+
 \titleformat{\section}{\zihao{3}  \heiti \centering}{\chaptername}{1em}{}
 \titleformat{\subsection}{\zihao{-4}  \heiti}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{-4}  \kaishu}{\thesubsubsection}{1em}{}
-
+\titlespacing*{\section}{0pt}{0pt}{\baselineskip}
 % 定义在目录中的格式
 % \titlecontents{标题名}
 %               [左间距]
@@ -308,6 +314,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %               {无序号标题}
 %               {指引线与页码}
 %               [下间距]
+
+\titlecontents{chapter}[1em]{\zihao{-4}\songti}{\thecontentslabel}{\hspace*{-1em}}
+{\titlerule*[0.5pc]{.}\contentspage}
+
 
 \titlecontents{section}
               [0em] % 按样例目录左侧是和前置部分文字左侧对齐的
